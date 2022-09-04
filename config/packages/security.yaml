@@ -5,10 +5,57 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         users_in_memory: { memory: null }
+        in_database_admin:
+            entity:
+                class: App\Entity\Administrateur
+                property: email
+        in_database_operator:
+            entity:
+                class: App\Entity\Operateur
+                property: email
+        in_database_tech:
+            entity:
+                class: App\Entity\Technicien
+                property: email
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        admin:
+            pattern: ^/administrateur
+            provider: in_database_admin
+            form_login:
+                login_path: administrateur_login 
+                check_path: administrateur_login                
+                always_use_default_target_path: true
+                default_target_path: administrateur
+            logout:
+                path: administrateur_logout
+                target: administrateur_login 
+        tech:
+            pattern: ^/technicien
+            provider: in_database_tech
+            form_login:
+                login_path: technicien_login 
+                check_path: technicien_login
+                always_use_default_target_path: true
+                default_target_path: technicien
+            logout:
+                path: technicien_logout
+                target: ttechnicien_login
+        user:
+            pattern: ^/operateur
+            provider: in_database_operator
+            form_login:
+                login_path: operateur_login 
+                check_path: operateur_login
+                always_use_default_target_path: true
+                default_target_path: operateur
+            logout:
+                path: operateur_logout
+                target: operateur_login
+
         main:
             lazy: true
             provider: users_in_memory
@@ -22,6 +69,12 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        - { path: ^/admnistrateur/login, roles: PUBLIC_ACCESS }
+        - { path: ^/admnistrateur, roles: [ROLE_ADMINISTRATEUR] }
+        - { path: ^/technicien/login, roles: PUBLIC_ACCESS }
+        - { path: ^/technicien, roles: ROLE_TECHNICIEN }
+        - { path: ^/operateur/login, roles: PUBLIC_ACCESS }
+        - { path: ^/operateur, roles: ROLE_OPERATEUR }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 
