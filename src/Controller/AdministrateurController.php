@@ -99,15 +99,22 @@ class AdministrateurController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-                
-            $manager->persist($admin);
-            $manager->flush();
-
-            $this->addFlash(
-                'success',
-                "Votre mot de passe a  été modifiée !!!"
-            );
-
+            $password =  $encoder->hashPassword($admin, $form->get('password'));
+            
+            if ($password == $admin->getPassword()) {
+                $newPassword =  $form->get('newPassword');
+                $manager->persist($admin);
+                $manager->flush();
+                $this->addFlash(
+                    'success',
+                    "Votre mot de passe a été modifiée !!!"
+                );
+            }else{
+                $this->addFlash(
+                    'danger',
+                    "L'ancien mot de passe ne correspond pas !!!"
+                );
+            }
             return $this->redirectToRoute('administrateur_administrateurs_show', [
                 'id' => $admin->getId()
             ]);
@@ -139,7 +146,7 @@ class AdministrateurController extends AbstractController
                 } catch (FileException $e) {
                     // ... handle exception if something happens during file upload
                 }
-                $admin->setAvatar($filename);
+                $admin->setPicture($filename);
             }
 
             $manager->persist($admin);
@@ -160,5 +167,4 @@ class AdministrateurController extends AbstractController
             'administrateur' => $admin
         ]);
     }
-
 }
