@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+{% block title %} {{title}} {% endblock %}
+{% block body %}
+
+<h1 class="h3 my-2">Sites</h1>
+
+<div class="content">
+    <div class="card">
+        <div class="card-header">
+            <span class="card-title h5">Nouveau site</span>
+        </div>
+        <div class="card-body">
+
+            {{ form_start(form, {'action': path('administrateur_site_add'), 'method': 'POST'}) }}
+
+            {{ form_widget(form) }}
+
+            <button class="btn btn-primary" type="submit">Enregistrer</button>
+
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

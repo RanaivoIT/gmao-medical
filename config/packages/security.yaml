@@ -29,7 +29,7 @@ security:
                 login_path: administrateur_login 
                 check_path: administrateur_login                
                 always_use_default_target_path: true
-                default_target_path: administrateur
+                default_target_path: administrateur_home
             logout:
                 path: administrateur_logout
                 target: administrateur_login 
@@ -40,7 +40,7 @@ security:
                 login_path: technicien_login 
                 check_path: technicien_login
                 always_use_default_target_path: true
-                default_target_path: technicien
+                default_target_path: technicien_home
             logout:
                 path: technicien_logout
                 target: ttechnicien_login
@@ -51,7 +51,7 @@ security:
                 login_path: operateur_login 
                 check_path: operateur_login
                 always_use_default_target_path: true
-                default_target_path: operateur
+                default_target_path: operateur_home
             logout:
                 path: operateur_logout
                 target: operateur_login

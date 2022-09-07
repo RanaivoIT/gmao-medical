@@ -1,0 +1,55 @@
+<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <div class="sb-sidenav-menu-heading">Accueil</div>
+                <a class="nav-link" href="{{ path(role_title ~ '_home') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Dashboard
+                </a>
+                <div class="sb-sidenav-menu-heading">Planning</div>
+                <a class="nav-link" href="{{ path(role_title ~ '_demande_list') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-wrench"></i></div>
+                    Demande d'interventions
+                </a>
+                <a class="nav-link" href="{{ path(role_title ~ '_intervention_list') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-calendar"></i></div>
+                    Liste d'interventions
+                </a>
+                
+                <div class="sb-sidenav-menu-heading">Paramètres</div>
+                <a class="nav-link" href="{{ path(role_title ~ '_equipement_list') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-cogs"></i></div>
+                    Equipements
+                </a>
+                <a class="nav-link" href="{{ path(role_title ~ '_colection_list') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-cogs"></i></div>
+                    Collections
+                </a>
+
+                <a class="nav-link" href="{{ path(role_title ~ '_site_list') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-hospital"></i></div>
+                    Sites
+                </a>
+                
+                <div class="sb-sidenav-menu-heading">Rôles</div>
+
+                <a class="nav-link" href="{{ path(role_title ~ '_administrateur_list') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-user-shield"></i></div>
+                    Administrateurs
+                </a>
+
+                <a class="nav-link" href="{{ path(role_title ~ '_technicien_list') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-user-graduate"></i></div>
+                    Techniciens
+                </a>
+                <a class="nav-link" href="{{ path(role_title ~ '_operateur_list') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                    Operateurs
+                </a>
+                
+            </div>
+        </div>
+        
+    </nav>
+</div>

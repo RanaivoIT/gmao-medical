@@ -209,7 +209,7 @@ class Technicien implements UserInterface,  PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        $roles = $this->roles;
+        $roles = ['ROLE_TECHNICIEN'];
         return array_unique($roles);
     }
 

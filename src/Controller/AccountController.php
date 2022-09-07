@@ -14,7 +14,7 @@ class AccountController extends AbstractController
     {
         return $this->redirectToRoute('operateur_login');
     }
-    
+
 
     #[Route('/administrateur/login', name: 'administrateur_login')]
     public function a_login(AuthenticationUtils $utils): Response
@@ -25,11 +25,12 @@ class AccountController extends AbstractController
     
             return $this->render('login.html.twig', [
                 'hasError' => $error !== null,
-                'email' => $email
+                'email' => $email,
+                'role_title' => 'administrateur'
             ]);
 
         }else {
-            return $this->redirectToRoute('administrateur');
+            return $this->redirectToRoute('administrateur_home');
         }
     }
     #[Route('/technicien/login', name: 'technicien_login')]
@@ -41,11 +42,12 @@ class AccountController extends AbstractController
     
             return $this->render('login.html.twig', [
                 'hasError' => $error !== null,
-                'email' => $email
+                'email' => $email,
+                'role_title' => 'technicien'
             ]);
 
         }else {
-            return $this->redirectToRoute('technicien');
+            return $this->redirectToRoute('technicien_home');
         }
     }
     #[Route('/operateur/login', name: 'operateur_login')]
@@ -57,11 +59,12 @@ class AccountController extends AbstractController
     
             return $this->render('login.html.twig', [
                 'hasError' => $error !== null,
-                'email' => $email
+                'email' => $email,
+                'role_title' => 'operateur'
             ]);
 
         }else {
-            return $this->redirectToRoute('technicien');
+            return $this->redirectToRoute('operateur_home');
         }
     }
 
@@ -84,22 +87,25 @@ class AccountController extends AbstractController
     #[Route('/administrateur', name: 'administrateur_home')]
     public function a_home(): Response
     {
-        return $this->render('administrateur/home.html.twig', [
+        return $this->render('dashboard/administrateur.home.html.twig', [
             'title' => 'Administrateur - Home',
+            'role_title' => 'administrateur'
         ]);
     }
     #[Route('/technicien', name: 'technicien_home')]
     public function t_home(): Response
     {
-        return $this->render('technicien/home.html.twig', [
+        return $this->render('dashboard/technicien.home.html.twig', [
             'title' => 'Technicien - Home',
+            'role_title' => 'technicien'
         ]);
     }
     #[Route('/operateur', name: 'operateur_home')]
     public function o_home(): Response
     {
-        return $this->render('operateur/home.html.twig', [
+        return $this->render('dashboard/operateur.home.html.twig', [
             'title' => 'Operateur - Home',
+            'role_title' => 'operateur'
         ]);
     }
 }

@@ -16,7 +16,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AdministrateurController extends AbstractController
 {
-    #[Route('/administrateur/administrateurs', name: 'administrateur_administrateurs')]
+    #[Route('/administrateur/administrateurs', name: 'administrateur_administrateur_list')]
     public function list(AdministrateurRepository $repo): Response
     {
         $administrateurs = $repo->findAll();
@@ -25,7 +25,7 @@ class AdministrateurController extends AbstractController
             'administrateurs' => $administrateurs
         ]);
     }
-    #[Route('/administrateur/administrateurs/{id}', name: 'administrateur_administrateurs_show')]
+    #[Route('/administrateur/administrateurs/{id}', name: 'administrateur_administrateur_show')]
     public function show(Administrateur $administrateur): Response
     {
         return $this->render('administrateur/show.html.twig', [
@@ -33,7 +33,7 @@ class AdministrateurController extends AbstractController
             'administrateur' => $administrateur
         ]);
     }
-    #[Route('/administrateur/administrateurs/add', name: 'administrateur_administrateurs_add')]
+    #[Route('/administrateur/administrateurs/add', name: 'administrateur_administrateur_add')]
     public function add(Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $encoder): Response
     {
         $admin = new Administrateur();
@@ -44,7 +44,6 @@ class AdministrateurController extends AbstractController
             
             $admin
                 ->setPassword($encoder->hashPassword($admin, "password"))
-                ->setRoles(['ROLE_ADMINISTRATEUR'])
                 ->setAvatar('avatar.png');
                 
             $manager->persist($admin);
@@ -55,7 +54,7 @@ class AdministrateurController extends AbstractController
                 "Le nouveau administrateur <strong>'" . $admin->getFirstname() . ", " . $admin->getLastname() . "'</strong> est ajouté !!!"
             );
 
-            return $this->redirectToRoute('administrateur_administrateurs_show', [
+            return $this->redirectToRoute('administrateur_administrateur_show', [
                 'id' => $admin->getId()
             ]);
         }
@@ -65,7 +64,7 @@ class AdministrateurController extends AbstractController
             'administrateur' => $admin
         ]);
     }
-    #[Route('/administrateur/administrateurs/{id}/edit', name: 'administrateur_administrateurs_edit')]
+    #[Route('/administrateur/administrateurs/{id}/edit', name: 'administrateur_administrateur_edit')]
     public function edit(Administrateur $admin, Request $request, EntityManagerInterface $manager): Response
     {
         $form = $this->createForm(AdministrateurType::class, $admin);
@@ -92,7 +91,7 @@ class AdministrateurController extends AbstractController
             'administrateur' => $admin
         ]);
     }
-    #[Route('/administrateur/administrateurs/{id}/password', name: 'administrateur_administrateurs_password')]
+    #[Route('/administrateur/administrateurs/{id}/password', name: 'administrateur_administrateur_password')]
     public function password(Administrateur $admin, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $encoder): Response
     {
         $form = $this->createForm(PasswordType::class, $admin);
@@ -127,7 +126,7 @@ class AdministrateurController extends AbstractController
         ]);
     }
     
-    #[Route('/administrateur/administrateurs/{id}/picture', name: 'administrateur_administrateurs_picture')]
+    #[Route('/administrateur/administrateurs/{id}/picture', name: 'administrateur_administrateur_picture')]
     public function picture(): Response
     {
         $form = $this->createForm(PictureType::class, null);

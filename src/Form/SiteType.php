@@ -17,7 +17,6 @@ class SiteType extends AbstractType
             ->add('email')
             ->add('address')
             ->add('contact')
-            ->add('picture')
         ;
     }
 
