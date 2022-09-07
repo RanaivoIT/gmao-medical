@@ -23,7 +23,7 @@ class AccountController extends AbstractController
             $error = $utils->getLastAuthenticationError();
             $email = $utils->getLastUsername();
     
-            return $this->render('administrateur/login.html.twig', [
+            return $this->render('login.html.twig', [
                 'hasError' => $error !== null,
                 'email' => $email
             ]);
@@ -39,7 +39,7 @@ class AccountController extends AbstractController
             $error = $utils->getLastAuthenticationError();
             $email = $utils->getLastUsername();
     
-            return $this->render('technicien/login.html.twig', [
+            return $this->render('login.html.twig', [
                 'hasError' => $error !== null,
                 'email' => $email
             ]);
@@ -55,7 +55,7 @@ class AccountController extends AbstractController
             $error = $utils->getLastAuthenticationError();
             $email = $utils->getLastUsername();
     
-            return $this->render('operateur/login.html.twig', [
+            return $this->render('login.html.twig', [
                 'hasError' => $error !== null,
                 'email' => $email
             ]);

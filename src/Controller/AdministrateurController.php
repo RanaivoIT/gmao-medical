@@ -28,7 +28,7 @@ class AdministrateurController extends AbstractController
     #[Route('/administrateur/administrateurs/{id}', name: 'administrateur_administrateurs_show')]
     public function show(Administrateur $administrateur): Response
     {
-        return $this->render('administrateur/administrateur/show.html.twig', [
+        return $this->render('administrateur/show.html.twig', [
             'title' => 'Administrateurs - Show',
             'administrateur' => $administrateur
         ]);
@@ -59,7 +59,7 @@ class AdministrateurController extends AbstractController
                 'id' => $admin->getId()
             ]);
         }
-        return $this->render('administrateur/administrateur/add.html.twig', [
+        return $this->render('administrateur/add.html.twig', [
             'title' => 'Administrateurs - Add',
             'form' => $form->createView(),
             'administrateur' => $admin
@@ -86,7 +86,7 @@ class AdministrateurController extends AbstractController
             ]);
         }
 
-        return $this->render('administrateur/administrateur/edit.html.twig', [
+        return $this->render('administrateur/edit.html.twig', [
             'title' => 'Administrateurs - Edit',
             'form' => $form->createView(),
             'administrateur' => $admin
@@ -120,12 +120,13 @@ class AdministrateurController extends AbstractController
             ]);
         }
 
-        return $this->render('administrateur/administrateur/password.html.twig', [
+        return $this->render('administrateur/password.html.twig', [
             'title' => 'Administrateurs - Password',
             'form' => $form->createView(),
             'administrateur' => $admin
         ]);
     }
+    
     #[Route('/administrateur/administrateurs/{id}/picture', name: 'administrateur_administrateurs_picture')]
     public function picture(): Response
     {
@@ -161,7 +162,7 @@ class AdministrateurController extends AbstractController
                 'id' => $admin->getId()
             ]);
         }
-        return $this->render('administrateur/administrateur/picture.html.twig', [
+        return $this->render('administrateur/picture.html.twig', [
             'title' => 'Administrateurs - Picture',
             'form' => $form->createView(),
             'administrateur' => $admin
